@@ -10,8 +10,13 @@ public class BookingPersistantService {
     @Autowired
     BookingDataPersistor bookingDataPersistor;
 
-    public void insertBooking(JoinPoint joinPoint){
+    public void newBooking(JoinPoint joinPoint){
        Booking booking =  ((TicketBookingPerformerImpl)joinPoint.getTarget()).getBooking();
        bookingDataPersistor.save(booking);
+    }
+
+    public void cancelBooking(JoinPoint joinPoint){
+       Booking booking =  ((TicketBookingPerformerImpl)joinPoint.getTarget()).getBooking();
+       bookingDataPersistor.delete(booking);
     }
 }

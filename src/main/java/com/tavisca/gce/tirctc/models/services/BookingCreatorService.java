@@ -19,6 +19,7 @@ public class BookingCreatorService {
         booking.setPassengers(ticketInformationHolder.getPassengers());
         booking.setSource(ticketInformationHolder.getSourceName());
         booking.setTrainId(ticketInformationHolder.getTrainId());
+        booking.setBoggyType(ticketInformationHolder.getBoggyType());
         booking.setTrainName(((TicketBookingPerformerImpl)joinPoint).getTrain().getTrainName());
 
         ((TicketBookingPerformerImpl)joinPoint.getTarget()).setBooking(booking);

@@ -18,7 +18,8 @@ public class StationDataPersistor implements DataPersister {
 
     @Override
     public void delete(Object object) {
-
+        Station station = (Station)object;
+        stationRepository.delete(station);
     }
 
     @Override

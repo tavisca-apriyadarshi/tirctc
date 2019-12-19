@@ -5,6 +5,11 @@ import java.sql.Timestamp;
 import java.util.HashMap;
 
 public class Stop implements Serializable {
+    private String stationName;
+    private Timestamp arrivalTime;
+    private Timestamp departureTime;
+    private HashMap<Integer, java.lang.Integer> trainInformation = new HashMap<>();
+
     public String getStationName() {
         return stationName;
     }
@@ -36,9 +41,4 @@ public class Stop implements Serializable {
     public void setTrainInformation(HashMap<Integer, java.lang.Integer> trainInformation) {
         this.trainInformation = trainInformation;
     }
-
-    private String stationName;
-    private Timestamp arrivalTime;
-    private Timestamp departureTime;
-    private HashMap<Integer, java.lang.Integer> trainInformation = new HashMap<>();
 }

@@ -6,6 +6,15 @@ import java.util.Date;
 import java.util.List;
 
 public class TicketInformationHolder {
+    private Integer boggyType;
+    private int no_OfSeats;
+    private String sourceName;
+    private String destinationName;
+    private  int trainId;
+    private Date bookingDate;
+    private Date journeyDate;
+    private List<Passenger> passengers;
+
     public Integer getBoggyType() {
         return boggyType;
     }
@@ -69,14 +78,5 @@ public class TicketInformationHolder {
     public void setPassengers(List<Passenger> passengers) {
         this.passengers = passengers;
     }
-
-    private Integer boggyType;
-    private int no_OfSeats;
-    private String sourceName;
-    private String destinationName;
-    private  int trainId;
-    private Date bookingDate;
-    private Date journeyDate;
-    private List<Passenger> passengers;
 
 }

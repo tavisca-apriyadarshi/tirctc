@@ -6,6 +6,26 @@ import java.util.Date;
 import java.util.List;
 
 public class Booking implements Serializable {
+    private int id;
+    private int trainId;
+    private String trainName;
+    private int no_OfTickets;
+    private Date bookingDate;
+    private Date journeyDate;
+    private String source;
+    private String destination;
+    private int boggyType;
+    List<Passenger> passengers = new ArrayList<>();
+
+
+    public int getBoggyType() {
+        return boggyType;
+    }
+
+    public void setBoggyType(int boggyType) {
+        this.boggyType = boggyType;
+    }
+
     public int getId() {
         return id;
     }
@@ -77,15 +97,5 @@ public class Booking implements Serializable {
     public void setPassengers(List<Passenger> passengers) {
         this.passengers = passengers;
     }
-
-    private int id;
-    private int trainId;
-    private String trainName;
-    private int no_OfTickets;
-    private Date bookingDate;
-    private Date journeyDate;
-    private String source;
-    private String destination;
-    List<Passenger> passengers = new ArrayList<>();
 
 }

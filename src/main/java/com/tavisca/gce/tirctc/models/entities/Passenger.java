@@ -1,6 +1,11 @@
 package com.tavisca.gce.tirctc.models.entities;
 
 public class Passenger {
+    private String name;
+    private  int age;
+    private char gender;
+    private String seatNumber;
+
     public String getName() {
         return name;
     }
@@ -32,9 +37,4 @@ public class Passenger {
     public void setSeatNumber(String seatNumber) {
         this.seatNumber = seatNumber;
     }
-
-    private String name;
-    private  int age;
-    private char gender;
-    private String seatNumber;
 }

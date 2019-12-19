@@ -10,7 +10,7 @@ public class TrainTableUpdaterService {
     @Autowired
     TrainDataPersister trainDataPersistor;
 
-    public void updateTrainEntiry(JoinPoint joinPoint)
+    public void updateTrainEntity(JoinPoint joinPoint)
     {
         Train train = ((TicketBookingPerformerImpl)joinPoint.getTarget()).getTrain();
         trainDataPersistor.save(train);

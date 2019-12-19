@@ -19,7 +19,8 @@ public class TrainDataPersister implements  DataPersister {
 
     @Override
     public void delete(Object object) {
-
+        Train train = (Train)object;
+        trainRepository.delete(train);
     }
 
     @Override

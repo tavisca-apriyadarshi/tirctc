@@ -18,7 +18,8 @@ public class BookingDataPersistor implements DataPersister{
 
     @Override
     public void delete(Object object) {
-
+        Booking booking = (Booking)object;
+        bookingRepository.delete(booking);
     }
 
     @Override

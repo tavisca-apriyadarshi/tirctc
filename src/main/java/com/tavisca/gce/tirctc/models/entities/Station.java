@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.util.List;
 
 public class Station implements Serializable {
-private String stationName;
-private int sid;
+    private int sid;
+    private String stationName;
+    private List<Train> trainsContainer;
+
 
     public String getStationName() {
         return stationName;
@@ -30,8 +32,4 @@ private int sid;
     public void setTrainsContainer(List<Train> trainsContainer) {
         this.trainsContainer = trainsContainer;
     }
-
-    private List<Train> trainsContainer;
-
-
 }

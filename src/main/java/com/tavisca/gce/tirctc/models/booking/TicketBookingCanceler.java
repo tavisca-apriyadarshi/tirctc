@@ -1,24 +1,14 @@
 package com.tavisca.gce.tirctc.models.booking;
 
+import com.tavisca.gce.tirctc.models.dto.TicketInformationHolder;
 import com.tavisca.gce.tirctc.models.entities.Booking;
 import com.tavisca.gce.tirctc.models.entities.Stop;
-import com.tavisca.gce.tirctc.models.dto.TicketInformationHolder;
 import com.tavisca.gce.tirctc.models.entities.Train;
 
 import java.util.List;
 
-public class TicketBookingPerformerImpl implements TicketBookingPerformer {
-    private int availableSeats;
+public class TicketBookingCanceler {
     private Train train;
-    private Booking booking;
-
-    public Booking getBooking() {
-        return booking;
-    }
-
-    public void setBooking(Booking booking) {
-        this.booking = booking;
-    }
 
     public Train getTrain() {
         return train;
@@ -28,28 +18,19 @@ public class TicketBookingPerformerImpl implements TicketBookingPerformer {
         this.train = train;
     }
 
-    public int getAvailableSeats() {
-        return availableSeats;
-    }
-
-    public void setAvailableSeats(int availableSeats) {
-        this.availableSeats = availableSeats;
-    }
-
-    public void generateTicket(TicketInformationHolder ticketINformationHolder) {
-        if (availableSeats >= ticketINformationHolder.getNo_OfSeats()) {
+    public void cancelTicket(Booking booking) {
 
             List<Stop> stops = train.getStops();
             Stop source = null;
             Stop destination = null;
             for (Stop stop : stops) {
-                if (stop.getStationName().equalsIgnoreCase(ticketINformationHolder.getSourceName())) {
+                if (stop.getStationName().equalsIgnoreCase(booking.getSource())) {
                     source = stop;
                 }
             }
 
             for (Stop stop : stops) {
-                if (stop.getStationName().equalsIgnoreCase(ticketINformationHolder.getDestinationName())) {
+                if (stop.getStationName().equalsIgnoreCase(booking.getDestination())) {
                     destination = stop;
                 }
             }
@@ -61,9 +42,9 @@ public class TicketBookingPerformerImpl implements TicketBookingPerformer {
             if (sourceStationIndex < destinationStationIndex) {
                 for (int i = sourceStationIndex; i <= destinationStationIndex; i++) {
                     currentStop = stops.get(i);
-                    currentStop.getTrainInformation().put(ticketINformationHolder.getBoggyType(), currentStop.getTrainInformation().get(ticketINformationHolder.getBoggyType()) - ticketINformationHolder.getNo_OfSeats());
+                    currentStop.getTrainInformation().put(booking.getBoggyType(), currentStop.getTrainInformation().get(booking.getBoggyType()) + booking.getNo_OfTickets());
                 }
             }
-        }
+
     }
 }
