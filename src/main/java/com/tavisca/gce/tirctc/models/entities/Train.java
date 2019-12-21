@@ -1,17 +1,30 @@
 package com.tavisca.gce.tirctc.models.entities;
 
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 
+@Entity
 public class Train implements Serializable {
 
-    private String trainName;
+    @Id
     private int trainId;
+    private String trainName;
+
+    ///////////////////////////////////////////////////?????????????????????????????????????????????????
     private HashMap<Integer, Integer> trainSeatsInformationContainer = new HashMap<Integer, Integer>();
     private String source;
     private String destination;
+
+    @ElementCollection
     private List<Stop> stops;
+
+    @ManyToMany(mappedBy = "trainsContainer")
+    private List<Station> stations;
 
     public String getTrainName() {
         return trainName;

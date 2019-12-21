@@ -1,8 +1,11 @@
 package com.tavisca.gce.tirctc.models.entities;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class Passenger {
-    private String name;
     private  int age;
+    private String name;
     private char gender;
     private String seatNumber;
 

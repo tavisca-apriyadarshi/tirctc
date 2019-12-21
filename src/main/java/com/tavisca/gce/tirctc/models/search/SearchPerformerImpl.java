@@ -10,6 +10,7 @@ import java.util.List;
 
 public class SearchPerformerImpl implements SearchPerformer {
     private Station source;
+    private Station destination;
 
     public Station getSource() {
         return source;
@@ -27,25 +28,20 @@ public class SearchPerformerImpl implements SearchPerformer {
         this.destination = destination;
     }
 
-    private Station destination;
-
     public List<Train> search(String source, String destination) throws StationNotFoundException {
-        if(source!=null&&destination!=null)
-        {
+        if (source != null && destination != null) {
             List<Train> trains = this.source.getTrainsContainer();
             List<Train> availableTrains = new ArrayList<>();
 
             Iterator<Train> iterator = trains.iterator();
-            while(iterator.hasNext())
-            {
+            while (iterator.hasNext()) {
                 Train train = iterator.next();
-                for(Stop stop : train.getStops())
-                {
-                    if(stop.getStationName().equalsIgnoreCase(source)&&stop.getStationName().equalsIgnoreCase(destination))
-                         availableTrains.add(train);
+                for (Stop stop : train.getStops()) {
+                    if (stop.getStationName().equalsIgnoreCase(source) && stop.getStationName().equalsIgnoreCase(destination))
+                        availableTrains.add(train);
                 }
             }
-          return availableTrains;
+            return availableTrains;
         }
         throw new StationNotFoundException();
     }

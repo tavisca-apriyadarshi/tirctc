@@ -1,11 +1,16 @@
 package com.tavisca.gce.tirctc.models.entities;
 
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Entity
 public class Booking implements Serializable {
+    @Id
     private int id;
     private int trainId;
     private String trainName;
@@ -14,15 +19,16 @@ public class Booking implements Serializable {
     private Date journeyDate;
     private String source;
     private String destination;
-    private int boggyType;
+    private TrainClass boggyType;
+    @ElementCollection
     List<Passenger> passengers = new ArrayList<>();
 
 
-    public int getBoggyType() {
+    public TrainClass getBoggyType() {
         return boggyType;
     }
 
-    public void setBoggyType(int boggyType) {
+    public void setBoggyType(TrainClass boggyType) {
         this.boggyType = boggyType;
     }
 

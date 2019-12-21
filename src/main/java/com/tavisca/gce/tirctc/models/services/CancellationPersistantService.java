@@ -1,6 +1,5 @@
 package com.tavisca.gce.tirctc.models.services;
 
-import com.tavisca.gce.tirctc.models.booking.TicketBookingPerformerImpl;
 import com.tavisca.gce.tirctc.models.dao.BookingDataPersistor;
 import com.tavisca.gce.tirctc.models.entities.Booking;
 import org.aspectj.lang.JoinPoint;
@@ -12,15 +11,14 @@ import org.springframework.core.annotation.Order;
 
 @Aspect
 @Configuration
-@Order(1)
-public class BookingPersistantService {
+@Order(0)
+public class CancellationPersistantService {
     @Autowired
     BookingDataPersistor bookingDataPersistor;
 
-    @After("execution(void com.tavisca.gce.tirctc.models.booking.TicketBookingPerformerImpl.generateTicket(..))")
-    public void newBooking(JoinPoint joinPoint){
-       Booking booking =  ((TicketBookingPerformerImpl)joinPoint.getTarget()).getBooking();
-       bookingDataPersistor.save(booking);
+    @After("execution(void com.tavisca.gce.tirctc.models.booking.TicketBookingCanceler.cancelTicket(..))")
+    public void cancelBooking(JoinPoint joinPoint){
+        Booking booking =  (Booking) joinPoint.getArgs()[0];
+        bookingDataPersistor.delete(booking);
     }
-
 }

@@ -8,12 +8,20 @@ import com.tavisca.gce.tirctc.models.booking.TicketBookingPerformerImpl;
 import com.tavisca.gce.tirctc.models.entities.Booking;
 import com.tavisca.gce.tirctc.models.entities.Passenger;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.Aspect;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
+@Aspect
+@Configuration
+@Order(3)
 public class PDFGeneratorService {
 
+    @After("execution(void com.tavisca.gce.tirctc.models.booking.TicketBookingPerformerImpl.generateTicket(..))")
     public void generateTicketPdfOnSuccessfulBooking(JoinPoint jp)
     {
         TicketBookingPerformerImpl performer = (TicketBookingPerformerImpl) jp.getTarget();

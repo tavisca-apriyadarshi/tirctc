@@ -1,12 +1,13 @@
 package com.tavisca.gce.tirctc.models.dto;
 
 import com.tavisca.gce.tirctc.models.entities.Passenger;
+import com.tavisca.gce.tirctc.models.entities.TrainClass;
 
 import java.util.Date;
 import java.util.List;
 
 public class TicketInformationHolder {
-    private Integer boggyType;
+    private TrainClass boggyType;
     private int no_OfSeats;
     private String sourceName;
     private String destinationName;
@@ -15,11 +16,11 @@ public class TicketInformationHolder {
     private Date journeyDate;
     private List<Passenger> passengers;
 
-    public Integer getBoggyType() {
+    public TrainClass getBoggyType() {
         return boggyType;
     }
 
-    public void setBoggyType(Integer boggyType) {
+    public void setBoggyType(TrainClass boggyType) {
         this.boggyType = boggyType;
     }
 

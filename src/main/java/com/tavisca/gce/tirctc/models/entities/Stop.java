@@ -1,14 +1,22 @@
 package com.tavisca.gce.tirctc.models.entities;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.HashMap;
 
+@Embeddable
 public class Stop implements Serializable {
     private String stationName;
     private Timestamp arrivalTime;
     private Timestamp departureTime;
-    private HashMap<Integer, java.lang.Integer> trainInformation = new HashMap<>();
+
+    @ElementCollection
+    @CollectionTable(name = "trainClass_availableSeats_mapping",
+            joinColumns = {@JoinColumn(name = "station_name",referencedColumnName = "stationName")})
+    @MapKeyEnumerated (EnumType.STRING)
+    @Column(name = "class")
+    private HashMap<TrainClass, Integer> trainInformation = new HashMap<>();
 
     public String getStationName() {
         return stationName;
@@ -34,11 +42,11 @@ public class Stop implements Serializable {
         this.departureTime = departureTime;
     }
 
-    public HashMap<Integer, java.lang.Integer> getTrainInformation() {
+    public HashMap<TrainClass, Integer> getTrainInformation() {
         return trainInformation;
     }
 
-    public void setTrainInformation(HashMap<Integer, java.lang.Integer> trainInformation) {
+    public void setTrainInformation(HashMap<TrainClass, Integer> trainInformation) {
         this.trainInformation = trainInformation;
     }
 }
